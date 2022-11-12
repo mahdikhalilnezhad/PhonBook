@@ -1,6 +1,6 @@
 ﻿namespace PhonBook
 {
-    partial class Form1
+    partial class FrmManiPhonBook
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
@@ -50,12 +51,14 @@
             this.lblSearchby = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.dataGridViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(14, 406);
+            this.btnNew.Location = new System.Drawing.Point(12, 304);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(89, 33);
             this.btnNew.TabIndex = 0;
@@ -64,7 +67,7 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(14, 463);
+            this.btnNext.Location = new System.Drawing.Point(12, 343);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(89, 33);
             this.btnNext.TabIndex = 1;
@@ -73,7 +76,7 @@
             // 
             // btnPrevious
             // 
-            this.btnPrevious.Location = new System.Drawing.Point(142, 463);
+            this.btnPrevious.Location = new System.Drawing.Point(107, 343);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(89, 33);
             this.btnPrevious.TabIndex = 3;
@@ -82,7 +85,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(142, 406);
+            this.btnSave.Location = new System.Drawing.Point(107, 304);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(89, 33);
             this.btnSave.TabIndex = 2;
@@ -91,7 +94,7 @@
             // 
             // btnLast
             // 
-            this.btnLast.Location = new System.Drawing.Point(398, 463);
+            this.btnLast.Location = new System.Drawing.Point(297, 343);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(89, 33);
             this.btnLast.TabIndex = 7;
@@ -100,7 +103,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(398, 406);
+            this.btnDelete.Location = new System.Drawing.Point(297, 304);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(89, 33);
             this.btnDelete.TabIndex = 6;
@@ -109,7 +112,7 @@
             // 
             // btnFirst
             // 
-            this.btnFirst.Location = new System.Drawing.Point(270, 463);
+            this.btnFirst.Location = new System.Drawing.Point(202, 343);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(89, 33);
             this.btnFirst.TabIndex = 5;
@@ -118,7 +121,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(270, 406);
+            this.btnEdit.Location = new System.Drawing.Point(202, 304);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(89, 33);
             this.btnEdit.TabIndex = 4;
@@ -129,21 +132,21 @@
             // 
             this.txtFirstName.Location = new System.Drawing.Point(142, 14);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(377, 25);
+            this.txtFirstName.Size = new System.Drawing.Size(244, 25);
             this.txtFirstName.TabIndex = 8;
             // 
             // txtLastName
             // 
             this.txtLastName.Location = new System.Drawing.Point(142, 46);
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(377, 25);
+            this.txtLastName.Size = new System.Drawing.Size(244, 25);
             this.txtLastName.TabIndex = 9;
             // 
             // txtPhone
             // 
             this.txtPhone.Location = new System.Drawing.Point(142, 79);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(377, 25);
+            this.txtPhone.Size = new System.Drawing.Size(244, 25);
             this.txtPhone.TabIndex = 10;
             // 
             // txtAddress
@@ -151,16 +154,19 @@
             this.txtAddress.Location = new System.Drawing.Point(142, 113);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(377, 172);
+            this.txtAddress.Size = new System.Drawing.Size(244, 172);
             this.txtAddress.TabIndex = 11;
             // 
             // DataGridView
             // 
+            this.DataGridView.AllowUserToAddRows = false;
+            this.DataGridView.AllowUserToDeleteRows = false;
             this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView.Location = new System.Drawing.Point(526, 187);
+            this.DataGridView.Location = new System.Drawing.Point(392, 169);
             this.DataGridView.Name = "DataGridView";
+            this.DataGridView.ReadOnly = true;
             this.DataGridView.RowTemplate.Height = 25;
-            this.DataGridView.Size = new System.Drawing.Size(696, 311);
+            this.DataGridView.Size = new System.Drawing.Size(550, 207);
             this.DataGridView.TabIndex = 12;
             // 
             // lblFirstName
@@ -171,7 +177,6 @@
             this.lblFirstName.Size = new System.Drawing.Size(81, 19);
             this.lblFirstName.TabIndex = 13;
             this.lblFirstName.Text = "First Name";
-            this.lblFirstName.Click += new System.EventHandler(this.label1_Click);
             // 
             // lblLastName
             // 
@@ -203,14 +208,14 @@
             // cmbSearchBy
             // 
             this.cmbSearchBy.FormattingEnabled = true;
-            this.cmbSearchBy.Location = new System.Drawing.Point(988, 17);
+            this.cmbSearchBy.Location = new System.Drawing.Point(707, 17);
             this.cmbSearchBy.Name = "cmbSearchBy";
             this.cmbSearchBy.Size = new System.Drawing.Size(235, 25);
             this.cmbSearchBy.TabIndex = 17;
             // 
             // txtSearchFor
             // 
-            this.txtSearchFor.Location = new System.Drawing.Point(988, 50);
+            this.txtSearchFor.Location = new System.Drawing.Point(707, 50);
             this.txtSearchFor.Name = "txtSearchFor";
             this.txtSearchFor.Size = new System.Drawing.Size(236, 25);
             this.txtSearchFor.TabIndex = 18;
@@ -218,7 +223,7 @@
             // lblSearchby
             // 
             this.lblSearchby.AutoSize = true;
-            this.lblSearchby.Location = new System.Drawing.Point(903, 20);
+            this.lblSearchby.Location = new System.Drawing.Point(622, 20);
             this.lblSearchby.Name = "lblSearchby";
             this.lblSearchby.Size = new System.Drawing.Size(79, 19);
             this.lblSearchby.TabIndex = 19;
@@ -227,7 +232,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(897, 52);
+            this.label2.Location = new System.Drawing.Point(616, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 19);
             this.label2.TabIndex = 20;
@@ -235,18 +240,22 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(1149, 83);
+            this.btnSearch.Location = new System.Drawing.Point(868, 83);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 30);
             this.btnSearch.TabIndex = 21;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // dataGridViewBindingSource
+            // 
+            this.dataGridViewBindingSource.DataSource = typeof(System.Windows.Forms.DataGridView);
+            // 
+            // FrmManiPhonBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1235, 511);
+            this.ClientSize = new System.Drawing.Size(952, 390);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblSearchby);
@@ -270,9 +279,11 @@
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnNew);
             this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "FrmManiPhonBook";
+            this.Text = "Phon Book";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,5 +313,6 @@
         private Label lblSearchby;
         private Label label2;
         private Button btnSearch;
+        private BindingSource dataGridViewBindingSource;
     }
 }
