@@ -52,6 +52,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dataGridViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblId = new System.Windows.Forms.Label();
+            this.txtId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -64,6 +66,7 @@
             this.btnNew.TabIndex = 0;
             this.btnNew.Text = "New";
             this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // btnNext
             // 
@@ -87,12 +90,14 @@
             // 
             // btnSave
             // 
+            this.btnSave.Enabled = false;
             this.btnSave.Location = new System.Drawing.Point(107, 304);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(89, 33);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnLast
             // 
@@ -112,6 +117,7 @@
             this.btnDelete.TabIndex = 6;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnFirst
             // 
@@ -134,31 +140,35 @@
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(142, 14);
+            this.txtFirstName.Location = new System.Drawing.Point(142, 52);
             this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.ReadOnly = true;
             this.txtFirstName.Size = new System.Drawing.Size(244, 25);
             this.txtFirstName.TabIndex = 8;
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(142, 46);
+            this.txtLastName.Location = new System.Drawing.Point(142, 84);
             this.txtLastName.Name = "txtLastName";
+            this.txtLastName.ReadOnly = true;
             this.txtLastName.Size = new System.Drawing.Size(244, 25);
             this.txtLastName.TabIndex = 9;
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(142, 79);
+            this.txtPhone.Location = new System.Drawing.Point(142, 117);
             this.txtPhone.Name = "txtPhone";
+            this.txtPhone.ReadOnly = true;
             this.txtPhone.Size = new System.Drawing.Size(244, 25);
             this.txtPhone.TabIndex = 10;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(142, 113);
+            this.txtAddress.Location = new System.Drawing.Point(142, 151);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(244, 172);
+            this.txtAddress.ReadOnly = true;
+            this.txtAddress.Size = new System.Drawing.Size(244, 132);
             this.txtAddress.TabIndex = 11;
             // 
             // DataGridView
@@ -172,11 +182,12 @@
             this.DataGridView.RowTemplate.Height = 25;
             this.DataGridView.Size = new System.Drawing.Size(550, 207);
             this.DataGridView.TabIndex = 12;
+            this.DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellClick);
             // 
             // lblFirstName
             // 
             this.lblFirstName.AutoSize = true;
-            this.lblFirstName.Location = new System.Drawing.Point(14, 17);
+            this.lblFirstName.Location = new System.Drawing.Point(14, 55);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(81, 19);
             this.lblFirstName.TabIndex = 13;
@@ -185,7 +196,7 @@
             // lblLastName
             // 
             this.lblLastName.AutoSize = true;
-            this.lblLastName.Location = new System.Drawing.Point(14, 50);
+            this.lblLastName.Location = new System.Drawing.Point(14, 88);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(79, 19);
             this.lblLastName.TabIndex = 14;
@@ -194,7 +205,7 @@
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(14, 83);
+            this.lblPhone.Location = new System.Drawing.Point(14, 121);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(51, 19);
             this.lblPhone.TabIndex = 15;
@@ -203,7 +214,7 @@
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(14, 116);
+            this.lblAddress.Location = new System.Drawing.Point(14, 154);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(63, 19);
             this.lblAddress.TabIndex = 16;
@@ -255,11 +266,30 @@
             // 
             this.dataGridViewBindingSource.DataSource = typeof(System.Windows.Forms.DataGridView);
             // 
+            // lblId
+            // 
+            this.lblId.AutoSize = true;
+            this.lblId.Location = new System.Drawing.Point(12, 23);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(23, 19);
+            this.lblId.TabIndex = 23;
+            this.lblId.Text = "ID";
+            // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(140, 20);
+            this.txtId.Name = "txtId";
+            this.txtId.ReadOnly = true;
+            this.txtId.Size = new System.Drawing.Size(244, 25);
+            this.txtId.TabIndex = 22;
+            // 
             // FrmManiPhonBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(952, 390);
+            this.Controls.Add(this.lblId);
+            this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblSearchby);
@@ -318,5 +348,7 @@
         private Label label2;
         private Button btnSearch;
         private BindingSource dataGridViewBindingSource;
+        private Label lblId;
+        private TextBox txtId;
     }
 }
