@@ -67,21 +67,23 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(12, 343);
+            this.btnNext.Location = new System.Drawing.Point(107, 343);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(89, 33);
             this.btnNext.TabIndex = 1;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPrevious
             // 
-            this.btnPrevious.Location = new System.Drawing.Point(107, 343);
+            this.btnPrevious.Location = new System.Drawing.Point(202, 345);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(89, 33);
             this.btnPrevious.TabIndex = 3;
             this.btnPrevious.Text = "Previous";
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // btnSave
             // 
@@ -100,6 +102,7 @@
             this.btnLast.TabIndex = 7;
             this.btnLast.Text = "Last";
             this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // btnDelete
             // 
@@ -112,12 +115,13 @@
             // 
             // btnFirst
             // 
-            this.btnFirst.Location = new System.Drawing.Point(202, 343);
+            this.btnFirst.Location = new System.Drawing.Point(12, 343);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(89, 33);
             this.btnFirst.TabIndex = 5;
             this.btnFirst.Text = "First";
             this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // btnEdit
             // 

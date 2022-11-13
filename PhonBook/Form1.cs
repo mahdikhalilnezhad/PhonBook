@@ -18,7 +18,7 @@ namespace PhonBook
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter adapter = new SqlDataAdapter();
         DataSet ds = new DataSet();
-
+        CurrencyManager currencymanager;
 
 
 
@@ -57,8 +57,28 @@ namespace PhonBook
             txtLastName.DataBindings.Add("text", ds, "temptable.lastname");
             txtPhone.DataBindings.Add("text", ds, "temptable.phone");
             txtAddress.DataBindings.Add("text", ds, "temptable.address");
+
+            currencymanager = (CurrencyManager)this.BindingContext[ds, "temptable"];
         }
 
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            currencymanager.Position ++;
+        }
 
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            currencymanager.Position = 0;
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            currencymanager.Position --;
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            currencymanager.Position = currencymanager.Count-1;
+        }
     }
 }
