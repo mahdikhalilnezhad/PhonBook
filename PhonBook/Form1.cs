@@ -19,7 +19,7 @@ namespace PhonBook
         SqlDataAdapter adapter = new SqlDataAdapter();
         DataSet ds = new DataSet();
         CurrencyManager currencymanager;
-
+        int beforEdit;
 
 
         public FrmManiPhonBook()
@@ -67,30 +67,40 @@ namespace PhonBook
             txtAddress.DataBindings.Add("text", ds, "temptable.address");
 
             currencymanager = (CurrencyManager)this.BindingContext[ds, "temptable"];
+
         }
         private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             currencymanager.Position = e.RowIndex;
         }
 
+        private void SetCurrentRecord(int currentRecord)
+        {
+            if (currentRecord < 0 || currentRecord > currencymanager.Count+1)
+                return;
+            currencymanager.Position = currentRecord;
+
+            DataGridView.CurrentCell = DataGridView.Rows[currentRecord].Cells[DataGridView.CurrentCell.ColumnIndex];
+        }
+
         private void btnNext_Click(object sender, EventArgs e)
         {
-            currencymanager.Position ++;
+            SetCurrentRecord(currencymanager.Position + 1);
         }
 
         private void btnFirst_Click(object sender, EventArgs e)
         {
-            currencymanager.Position = 0;
+            SetCurrentRecord(0);
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
-            currencymanager.Position --;
+            SetCurrentRecord(currencymanager.Position - 1);
         }
 
         private void btnLast_Click(object sender, EventArgs e)
         {
-            currencymanager.Position = currencymanager.Count-1;
+            SetCurrentRecord(currencymanager.Count - 1);
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -162,5 +172,80 @@ namespace PhonBook
 
             FillGrid();
         }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (btnEdit.Text == "Edit")
+            {
+                txtAddress.ReadOnly = false;
+                txtFirstName.ReadOnly = false;
+                txtLastName.ReadOnly = false;
+                txtPhone.ReadOnly = false;
+                txtId.ReadOnly = true;
+
+                btnEdit.Text = "Apply";
+                txtFirstName.Focus();
+
+                beforEdit = currencymanager.Position;
+            }
+            else
+            {
+                SqlCommand cmd = new SqlCommand();
+                DialogResult dialog;
+
+                cmd.CommandText = "update phonetable set firstname=@fn, lastname=@ln, phone=@ph, address=@ad where id=@id";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("fn", txtFirstName.Text);
+                cmd.Parameters.AddWithValue("ln", txtLastName.Text);
+                cmd.Parameters.AddWithValue("ph", txtPhone.Text);
+                cmd.Parameters.AddWithValue("ad", txtAddress.Text);
+                cmd.Parameters.AddWithValue("id", txtId.Text);
+
+                dialog = MessageBox.Show("Do you want to edit the person with Id '" + txtId.Text + "' ?"
+                            , "Edit"
+                            , MessageBoxButtons.YesNoCancel);
+                if (dialog == DialogResult.No || dialog == DialogResult.Cancel)
+                    return;
+
+                cmd.Connection = conn;
+                cmd.ExecuteNonQuery();
+
+                FillGrid();
+
+                SetCurrentRecord(beforEdit);
+
+                txtId.ReadOnly = true;
+                txtAddress.ReadOnly = true;
+                txtFirstName.ReadOnly = true;
+                txtLastName.ReadOnly = true;
+                txtPhone.ReadOnly = true;
+
+                btnEdit.Text = "Edit";
+
+            }
+
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string query;
+            query = "select * from PhoneTable where " + cmbSearchBy.Text + " like '" + txtSearchFor.Text + "%'";
+
+            FillGrid(query);
+        }
+
+        private void txtSearchFor_TextChanged(object sender, EventArgs e)
+        {
+            btnSearch_Click(null, null);
+        }
+
+        private void DataGridView_KeyUp(object sender, KeyEventArgs e)
+        {
+            SetCurrentRecord(DataGridView.CurrentCell.RowIndex);
+
+        }
+
+
     }
 }

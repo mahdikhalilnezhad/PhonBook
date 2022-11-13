@@ -137,6 +137,7 @@
             this.btnEdit.TabIndex = 4;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // txtFirstName
             // 
@@ -183,6 +184,7 @@
             this.DataGridView.Size = new System.Drawing.Size(550, 207);
             this.DataGridView.TabIndex = 12;
             this.DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellClick);
+            this.DataGridView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DataGridView_KeyUp);
             // 
             // lblFirstName
             // 
@@ -222,7 +224,13 @@
             // 
             // cmbSearchBy
             // 
+            this.cmbSearchBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSearchBy.FormattingEnabled = true;
+            this.cmbSearchBy.Items.AddRange(new object[] {
+            "FirstName",
+            "LastName",
+            "Phone",
+            "Address"});
             this.cmbSearchBy.Location = new System.Drawing.Point(707, 17);
             this.cmbSearchBy.Name = "cmbSearchBy";
             this.cmbSearchBy.Size = new System.Drawing.Size(235, 25);
@@ -234,6 +242,7 @@
             this.txtSearchFor.Name = "txtSearchFor";
             this.txtSearchFor.Size = new System.Drawing.Size(236, 25);
             this.txtSearchFor.TabIndex = 18;
+            this.txtSearchFor.TextChanged += new System.EventHandler(this.txtSearchFor_TextChanged);
             // 
             // lblSearchby
             // 
@@ -261,6 +270,7 @@
             this.btnSearch.TabIndex = 21;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // dataGridViewBindingSource
             // 
