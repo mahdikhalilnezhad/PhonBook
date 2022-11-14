@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 
 
 namespace PhonBook
@@ -20,6 +21,7 @@ namespace PhonBook
         DataSet ds = new DataSet();
         CurrencyManager currencymanager;
         int beforEdit;
+        Region region = new Region();
 
 
         public FrmManiPhonBook()
@@ -30,7 +32,7 @@ namespace PhonBook
         {
             
             conn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;
-                                    AttachDbFilename=E:\C_sharp_practice\PhonBook\PhonBook\PhonBookDB.mdf;
+                                    AttachDbFilename="+Application.StartupPath+@"PhonBookDB.mdf;
                                     Integrated Security=True";
             conn.Open();
 
@@ -59,12 +61,14 @@ namespace PhonBook
             txtLastName.DataBindings.Clear();
             txtPhone.DataBindings.Clear();
             txtAddress.DataBindings.Clear();
+            pictureBox1.DataBindings.Clear();
 
             txtId.DataBindings.Add("text", ds, "temptable.Id");
             txtFirstName.DataBindings.Add("text", ds, "temptable.firstname");
             txtLastName.DataBindings.Add("text", ds, "temptable.lastname");
             txtPhone.DataBindings.Add("text", ds, "temptable.phone");
             txtAddress.DataBindings.Add("text", ds, "temptable.address");
+            pictureBox1.DataBindings.Add("imagelocation", ds, "temptable.PictureUrl");
 
             currencymanager = (CurrencyManager)this.BindingContext[ds, "temptable"];
 
@@ -119,6 +123,7 @@ namespace PhonBook
 
             btnNew.Enabled = false;
             btnSave.Enabled = true;
+            btnBrowse.Enabled = true;
 
             txtFirstName.Focus();
         }
@@ -127,13 +132,14 @@ namespace PhonBook
         {
             SqlCommand cmd = new SqlCommand();
             
-            cmd.CommandText = "insert into phonetable values (@fn, @ln, @ph, @ad)";
+            cmd.CommandText = "insert into phonetable values (@fn, @ln, @ph, @ad, @pic)";
             
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("fn", txtFirstName.Text);
             cmd.Parameters.AddWithValue("ln", txtLastName.Text);
             cmd.Parameters.AddWithValue("ph", txtPhone.Text);
             cmd.Parameters.AddWithValue("ad", txtAddress.Text);
+            cmd.Parameters.AddWithValue("pic", CopyPicture(pictureBox1.ImageLocation, txtId.Text));
 
             cmd.Connection = conn;
 
@@ -141,6 +147,7 @@ namespace PhonBook
 
             btnSave.Enabled = false;
             btnNew.Enabled = true;
+            btnBrowse.Enabled = false;
 
             txtId.ReadOnly = true;
             txtAddress.ReadOnly = true;
@@ -182,6 +189,7 @@ namespace PhonBook
                 txtLastName.ReadOnly = false;
                 txtPhone.ReadOnly = false;
                 txtId.ReadOnly = true;
+                btnBrowse.Enabled = true;
 
                 btnEdit.Text = "Apply";
                 txtFirstName.Focus();
@@ -193,13 +201,14 @@ namespace PhonBook
                 SqlCommand cmd = new SqlCommand();
                 DialogResult dialog;
 
-                cmd.CommandText = "update phonetable set firstname=@fn, lastname=@ln, phone=@ph, address=@ad where id=@id";
+                cmd.CommandText = "update phonetable set firstname=@fn, lastname=@ln, phone=@ph, address=@ad, pictureurl=@pic where id=@id";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("fn", txtFirstName.Text);
                 cmd.Parameters.AddWithValue("ln", txtLastName.Text);
                 cmd.Parameters.AddWithValue("ph", txtPhone.Text);
                 cmd.Parameters.AddWithValue("ad", txtAddress.Text);
                 cmd.Parameters.AddWithValue("id", txtId.Text);
+                cmd.Parameters.AddWithValue("pic", CopyPicture(pictureBox1.ImageLocation, txtId.Text));
 
                 dialog = MessageBox.Show("Do you want to edit the person with Id '" + txtId.Text + "' ?"
                             , "Edit"
@@ -221,7 +230,7 @@ namespace PhonBook
                 txtPhone.ReadOnly = true;
 
                 btnEdit.Text = "Edit";
-
+                btnBrowse.Enabled = false;
             }
 
 
@@ -246,6 +255,49 @@ namespace PhonBook
 
         }
 
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogresult;
+            dialogresult = openFileDialog_btnBrowse.ShowDialog();
 
+            if (dialogresult==DialogResult.Cancel)
+                return ;
+            pictureBox1.ImageLocation = openFileDialog_btnBrowse.FileName;
+        }
+
+        private string CopyPicture(string sourcefile, string key)
+        {
+            string currentPath;
+            string newPath;
+            
+            if (sourcefile == "")
+                return "";
+
+            currentPath = Application.StartupPath + @"images\";
+
+            if (Directory.Exists(currentPath) == false)
+                Directory.CreateDirectory(currentPath);
+
+            newPath = currentPath + key + sourcefile.Substring(sourcefile.LastIndexOf("."));
+
+            if (File.Exists(newPath) == true)
+                File.Delete(newPath);
+
+            return newPath;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.SizeMode == PictureBoxSizeMode.StretchImage)
+            {
+                region = pictureBox1.Region;
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            }
+            else
+            {
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBox1.Region = region;
+            }
+        }
     }
 }

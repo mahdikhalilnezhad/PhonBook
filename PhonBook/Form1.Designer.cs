@@ -54,8 +54,12 @@
             this.dataGridViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblId = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.openFileDialog_btnBrowse = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNew
@@ -293,11 +297,39 @@
             this.txtId.Size = new System.Drawing.Size(244, 25);
             this.txtId.TabIndex = 22;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(392, 20);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(113, 122);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Enabled = false;
+            this.btnBrowse.Location = new System.Drawing.Point(511, 112);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(75, 30);
+            this.btnBrowse.TabIndex = 25;
+            this.btnBrowse.Text = "Browse";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // openFileDialog_btnBrowse
+            // 
+            this.openFileDialog_btnBrowse.FileName = "openFileDialog1";
+            // 
             // FrmManiPhonBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(952, 390);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnSearch);
@@ -328,6 +360,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -360,5 +393,8 @@
         private BindingSource dataGridViewBindingSource;
         private Label lblId;
         private TextBox txtId;
+        private PictureBox pictureBox1;
+        private Button btnBrowse;
+        private OpenFileDialog openFileDialog_btnBrowse;
     }
 }
